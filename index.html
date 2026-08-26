@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nonjabulo Blessing Nkosi 🎀</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#fff0f5;font-family:'Poppins',sans-serif;color:#d63384;overflow-y:auto;scroll-behavior:smooth}
+.page{min-height:100vh;width:100%;display:none;justify-content:center;align-items:center;flex-direction:column;padding:20px;text-align:center;background:#fff0f5}
+.page.active{display:flex;animation:fade.6s ease}
+@keyframes fade{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.card{background:#ffffffee;border:2px solid #ffb6d9;border-radius:28px;padding:30px 25px;max-width:440px;width:92%;box-shadow:0 20px 60px rgba(255,77,142,.18),0 0 0 6px rgba(255,182,217,.25);max-height:92vh;overflow-y:auto}
+.typewriter{font-size:16px;line-height:1.8;min-height:100px;color:#b84d7a;white-space:pre-line}
+.cursor{display:inline-block;width:3px;height:18px;background:#ff8fbf;animation:blink.8s infinite;vertical-align:text-bottom}
+@keyframes blink{50%{opacity:0}}
+.btns{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.btn{background:#fff;border:2px solid #ffb6d9;color:#ff6b9d;padding:12px 22px;border-radius:100px;font-weight:600;cursor:pointer;transition:.3s}
+.btn:hover{background:#ffb6d9;color:#fff;transform:translateY(-2px)}
+.btn-pink{background:linear-gradient(135deg,#ffb6d9,#ff4d8e);border:none;color:#fff;box-shadow:0 10px 25px rgba(255,107,157,.3);width:100%}
+.btn-no{position:absolute}
+#drawing{width:120px;height:120px;border-radius:50%;border:4px solid #fff;box-shadow:0 0 0 3px #ffb6d9,0 10px 30px rgba(255,77,142,.2);opacity:0;transition:opacity 2s;object-fit:cover;margin-bottom:15px}
+.big-count{font-size:4.5rem;font-family:'Dancing Script',cursive;color:#ff4d8e}
+.memory-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}
+.memory-item{border:2px dashed #ffb6d9;border-radius:18px;padding:14px;cursor:pointer;background:#fff0f5;transition:.3s;font-size:.9rem;color:#d63384}
+.memory-item:hover{transform:scale(1.05) rotate(1deg);background:#fff}
+.zoomed{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;justify-content:center;align-items:center;z-index:999;padding:20px}
+.zoomed img{max-width:90%;max-height:80vh;border-radius:22px;border:6px solid #fff}
+.letter-text{font-family:'Caveat',cursive;font-size:20px;text-align:left;line-height:1.9;color:#6b2d4a;min-height:200px;white-space:pre-line}
+.reason{font-size:17px;margin:12px 0;min-height:28px;color:#b84d7a;background:#fff0f5;padding:12px 16px;border-radius:14px;border-left:4px solid #ffb6d9;text-align:left}
+.badge{display:inline-block;padding:6px 14px;border-radius:100px;font-size:.68rem;letter-spacing:2px;font-weight:600;background:#ffe4ee;color:#ff6b9d;border:1px solid #ffb6d9}
+</style>
+</head>
+<body>
+
+<!-- ONE SONG ONLY -->
+<audio id="mainSong" src="song.mp3" loop preload="auto"></audio>
+<audio id="bgSong" src="song.mp3" preload="auto"></audio>
+<button id="musicToggle" style="position:fixed;top:15px;right:15px;z-index:9999;background:#fff;border:2px solid #ffb6d9;border-radius:50%;width:46px;height:46px;cursor:pointer;font-size:20px;box-shadow:0 8px 20px rgba(255,77,142,.2)">🎀</button>
+
+<section class="page active" id="page1">
+  <div class="card">
+    <div style="font-size:1.8rem">🎀</div>
+    <span class="badge">27 AUGUST • 18 YEARS • NONJABULO BLESSING NKOSI</span>
+    <div class="typewriter" id="type1"></div>
+    <div class="btns" id="btns1" style="display:none;">
+      <button class="btn" onclick="startGame()">convince me 📚</button>
+      <button class="btn btn-pink" onclick="goTo(2)">I'm focused! 💖</button>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="game">
+  <div class="card">
+    <div style="font-size:1.8rem">💅</div>
+    <h2 id="question" style="font-family:'Dancing Script';font-size:2rem;color:#ff4d8e">Why is Chula so iconic?</h2>
+    <div class="btns" style="position:relative;height:70px;margin-top:25px">
+      <button class="btn btn-pink" id="yesBtn" onclick="nextQ()" style="width:auto">Because she is 😌🎀</button>
+      <button class="btn btn-no" id="noBtn" onclick="moveNo()">She's not</button>
+    </div>
+    <p id="gameStatus" style="margin-top:15px;color:#ff8fbf;min-height:20px"></p>
+  </div>
+</section>
+
+<section class="page" id="page2">
+  <div class="card">
+    <img id="drawing" src="profile.jpg">
+    <div class="typewriter" id="type2"></div>
+    <div class="btns" id="btns2" style="display:none;">
+      <button class="btn btn-pink" onclick="goTo(3)">Yes she is! 👑</button>
+      <button class="btn" id="noBtn2" onclick="noClicked()">No</button>
+    </div>
+    <p id="errorMsg" style="color:#ff4d8e;margin-top:10px;min-height:20px;font-size:.9rem"></p>
+  </div>
+</section>
+
+<section class="page" id="page3">
+  <div class="card">
+    <div id="countdownDiv">
+      <h1 class="big-count" id="bigCount">3</h1>
+      <p>Preparing your 18th gift, Chula... 🥺🎀</p>
+    </div>
+    <div id="letterDiv" style="display:none;">
+      <div style="font-size:1.8rem">💌</div>
+      <h1 style="font-family:'Dancing Script',cursive;color:#ff4d8e;font-size:2.1rem">For My Chula 🥺🫶</h1>
+      <div class="letter-text" id="letterType"></div>
+      <button class="btn btn-pink" onclick="goTo(4)" style="margin-top:20px">Done Reading → Memories 💖</button>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page4">
+  <div class="card">
+    <div style="font-size:1.8rem">📸</div>
+    <h1 style="font-family:'Dancing Script';color:#ff4d8e">Chula's Memories ♡</h1>
+    <div class="memory-grid">
+      <div class="memory-item" onclick="zoom('pic1.jpg','My fav pic — periodt, natural beauty 💅🥹')">My fav pic</div>
+      <div class="memory-item" onclick="zoom('pic2.jpg','Matric baddie , clean & polite 🎀')">matric baddie</div>
+      <div class="memory-item" onclick="zoom('pic3.jpg','Prelims grind but still pretty 🥺📚')">prelims grind</div>
+      <div class="memory-item" onclick="zoom('pic4.jpg','That  — pure beauty 🌸💞')">your beauty</div>
+    </div>
+    <p style="margin-top:15px;font-size:.9rem">You deserve all the spotlight today, Princess Chula 🎀</p>
+    <button class="btn btn-pink" onclick="goTo(5)" style="margin-top:15px">Next → 18 Reasons 💖</button>
+  </div>
+</section>
+
+<section class="page" id="page5">
+  <div class="card">
+    <div style="font-size:1.8rem">🎀</div>
+    <h1 style="font-family:'Dancing Script';color:#ff4d8e">18 Reasons</h1>
+    <p style="font-size:.8rem;color:#aaa;margin-bottom:10px">For 18 years of Nonjabulo Blessing Nkosi</p>
+    <div class="reason" id="reason"></div>
+    <button class="btn btn-pink" id="nextReasonBtn" onclick="showReason()">Next Reason 💗</button>
+    <button class="btn btn-pink" onclick="goTo(6)" id="musicBtn" style="display:none">To Final Surprise 🎀</button>
+  </div>
+</section>
+
+<section class="page" id="page6">
+  <div class="card">
+    <div style="font-size:1.8rem">🎧</div>
+    <h1 style="font-family:'Dancing Script';color:#ff4d8e">Last One</h1>
+    <div style="background:#fff0f5;border:2px dashed #ffb6d9;border-radius:18px;padding:15px;margin:15px 0">
+      <p style="font-size:.95rem">Ice cream date still loading... I haven't forgotten 🍦💖<br>After prelims — we celebrate properly, my 18-year-old queen 🎂👑</p>
+    </div>
+    <p style="font-family:'Dancing Script';font-size:1.4rem;color:#ff8fbf">You made it to the end, Chula 🥺</p>
+    <a class="btn btn-pink" style="display:block;text-decoration:none;margin-top:15px;text-align:center" href="https://wa.me/?text=I've%20seen%20the%20letter%20and%20everything%20and%20my%20comment%20is%20...%20Thank%20you%20so%20much%20Thabiso%20🥺🎀">Text Me Your Reaction 💌</a>
+    <button class="btn" style="width:100%;margin-top:10px;border:2px solid #ffb6d9" onclick="blast()">Blow Candles Again 🎂✨</button>
+  </div>
+</section>
+
+<div class="zoomed" id="zoomed" onclick="this.style.display='none'"><div style="text-align:center"><img id="zoomImg"><p id="zoomCaption" style="color:#fff;margin-top:12px;font-family:'Dancing Script';font-size:1.5rem"></p></div></div>
+
+<script>
+function goTo(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(n==='game'?'game':'page'+n).classList.add('active');window.scrollTo(0,0)}
+const mainSong=document.getElementById('mainSong'),bgSong=document.getElementById('bgSong'),musicToggle=document.getElementById('musicToggle');let isPlaying=false;
+function playMainSong(){mainSong.volume=0.35;mainSong.play().then(()=>{isPlaying=true;musicToggle.innerText="🔊"}).catch(()=>{})}
+document.addEventListener('click',function firstClick(){if(!isPlaying)playMainSong();document.removeEventListener('click',firstClick)},{once:true});
+musicToggle.onclick=()=>{if(isPlaying){mainSong.pause();bgSong.pause();musicToggle.innerText="🎀";isPlaying=false}else{playMainSong()}}
+function typeText(el,text,speed,callback){let i=0;el.innerHTML='';let timer=setInterval(()=>{el.innerHTML=text.substring(0,i)+'<span class="cursor"></span>';i++;if(i>text.length){clearInterval(timer);el.innerHTML=text;if(callback)callback()}},speed)}
+typeText(document.getElementById('type1'),"Hi blessings, ik It's prelims season Chula 🥺💞 every seconds matters but can you borrow me few moments of your time 🥺 and..were celebrating you 🥰💞🥺 i couldn't afford a gift but i remembered, Not all the special gifts should be bought, Some lives in our brains 🤭🥹💞....do you allow me to take few moments..?",42,()=>{document.getElementById('btns1').style.display='flex'});
+const questions=["Why is Chula so iconic? 💅","Is it the pretty + smart combo? 🎀📚","Why do you make 18 look so soft and powerful? 👑","Dyk you're my fav? 🥺"];let qIndex=0;
+function startGame(){goTo('game')}
+function moveNo(){let no=document.getElementById('noBtn');no.style.left=Math.random()*150+'px';no.style.top=Math.random()*20+'px'}
+function nextQ(){qIndex++;if(qIndex<questions.length){document.getElementById('question').innerText=questions[qIndex];document.getElementById('gameStatus').innerText='Correct! Next one 😌🎀'}else{document.getElementById('gameStatus').innerText="Okay you're zoned in — let's celebrate...";setTimeout(()=>goTo(2),1000)}}
+function startPage2(){document.getElementById('drawing').style.opacity=1;typeText(document.getElementById('type2'),"On the 27th of August 2008, Nonjabulo Blessing Nkosi aka Chula was born 🤭✨ This beautiful soul. She's cute right? 18 years of being the girl she is🎀",55,()=>{document.getElementById('btns2').style.display='flex'})}
+let noCount=0;function noClicked(){noCount++;let msgs=["Girl, think again 😭","Be for real rn 🎀","Are you blind bestie? 😅","Try again princess 👑","You won't deny the truth? 🥺"];document.getElementById('errorMsg').innerText=msgs[Math.min(noCount-1,msgs.length-1)]}
+function startPage3(){
+  let count=3;document.getElementById('bigCount').innerText=count;
+  let interval=setInterval(()=>{
+    count--;document.getElementById('bigCount').innerText=count;
+    if(count<=0){
+      clearInterval(interval);mainSong.pause();bgSong.play().catch(()=>{});
+      document.getElementById('countdownDiv').innerHTML="<p style='color:#ff8fbf'>Take a deep breath and reveal 🙂‍↔️🎀</p>";
+      setTimeout(()=>{
+        document.getElementById('countdownDiv').style.display='none';document.getElementById('letterDiv').style.display='block';
+        typeText(document.getElementById('letterType'),`Hi Chula
+It's your birthday sis 🥺i actually have alot to say 🥺...but I'll make this short so we don't crash the site 🥺💞
+
+I can't believe that i made myself a friend out of...well,How (tbh,my friends painted you with a paint that didn't make sense unto you)...i remember it was a math afternoon study,you were in grade 10,I was helping you with a certain question..😅i learned that you actually didn't do or are who they said you're..i made friend with you,they couldn't believe it coz well🤷‍♂️nebabolela kawena byanna nebago tshaba 😅...asikho lapho...ive known you for atleast 3 years...infact it was around this time when we started chatting 😅🥺...
+
+Last year after a year long chat...i decided to...make myself a little dot in your brain and heart that will always be there with you and...get you a little friend,Nontabiso or something,i forgot the name i despised it coz it didn't make sense to me,hence i forgot about it🥺...
+
+Let me whisper you something 😎when people be talking about their cute friends,I stand up and talk about you bafana 🔥🔥🥹💞hape as i said earlier yesterday... You're the defination of pure beauty 🥹💞...nd please,Angfuni kuzwa bathi ufake i make up ufuna ukuba muhlen🥱well,It wont stick 🤣🥹 you're a natural beauty 🥹💞 according to me...
+
+Also...i wished to get you another baby this year but i couldn't 🥺🥺nd i thought of this gift here that your navigating through rn🥹💞i love it when I'm always unigue with gifts 🥺💞...
+
+Just know that..bro loves you so so much..., he's always waiting for anytime when you actually need his help... I'll always be at your service...
+
+Also...its a tough season 🥺🥺💞prelim exams...hope you're coping, can't lie and say it'll be easy but i can tell you that you'll be a stronger girl than you're after,this is pure torture,but wena you still look pretty while its tough like this 🤣🤣🥹💞...You're the best sis and...happy legal age...🥺💞
+
+Ice cream date still loading In haven't forgotten....
+
+Yours truly Thabiso`,30);
+        setTimeout(()=>{confetti({particleCount:180,spread:80,origin:{y:.6},colors:['#ff8fab','#ff4d8e','#ffd6e7']})},500)
+      },1200)
+    }
+  },1000)
+}
+const observer=new MutationObserver(()=>{if(document.getElementById('page2').classList.contains('active'))startPage2();if(document.getElementById('page3').classList.contains('active'))startPage3()});
+observer.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+const reasons=["1. You're cute","2. You're Kind","3. You're Smart","4. You're Clean","5. You're a good dancer🤣","6. You're talk🤣","7. Your childish version is cute","8. You talk...enough","9. You're polite","10. Well mannered","11. You're harmless","12. Music taste 😗","13. Awuphaphi..","14. You're caring","15. Loving","16. Selfless when you can","17. You seem honest,idk much 🤣","18. Again, you're cute 🥰🥺💞"];let rIndex=0;
+function showReason(){if(rIndex<reasons.length){typeText(document.getElementById('reason'),reasons[rIndex],35);rIndex++}if(rIndex>=reasons.length){document.getElementById('nextReasonBtn').style.display='none';document.getElementById('musicBtn').style.display='block'}}
+function zoom(src,caption){document.getElementById('zoomImg').src=src;document.getElementById('zoomCaption').innerText=caption;document.getElementById('zoomed').style.display='flex'}
+function blast(){confetti({particleCount:220,spread:90,origin:{y:.65},colors:['#ff4d8e','#ff8fab','#ffd6e7','#ffffff']})}
+</script>
+</body>
+</html>
