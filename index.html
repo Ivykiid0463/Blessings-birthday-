@@ -32,6 +32,21 @@ body{background:#fff0f5;font-family:'Poppins',sans-serif;color:#d63384;overflow-
 .reason{font-size:17px;margin:12px 0;min-height:28px;color:#b84d7a;background:#fff0f5;padding:12px 16px;border-radius:14px;border-left:4px solid #ffb6d9;text-align:left}
 .badge{display:inline-block;padding:6px 14px;border-radius:100px;font-size:.68rem;letter-spacing:2px;font-weight:600;background:#ffe4ee;color:#ff6b9d;border:1px solid #ffb6d9}
 </style>
+
+  <!-- ADD THIS BUTTON - it will always be visible at bottom -->
+<style>
+.goodluck-float{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  z-index:9998;background:linear-gradient(135deg,#8fb6ff,#ff8ab3);
+  color:white;border:none;padding:14px 26px;border-radius:100px;
+  font-weight:800;font-size:13px;letter-spacing:.5px;cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);display:flex;align-items:center;gap:8px;
+  animation:floaty 2s infinite ease-in-out;text-decoration:none
+}
+@keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+.goodluck-float:active{transform:translateX(-50%) scale(.96)}
+</style>
+<a href="Goodluck.html" class="goodluck-float">🩵 Good Luck Letter → 📚</a>
 </head>
 <body>
 
@@ -118,12 +133,26 @@ body{background:#fff0f5;font-family:'Poppins',sans-serif;color:#d63384;overflow-
 </section>
 
 <section class="page" id="page6">
+  <section class="page" id="page6">
   <div class="card">
     <div style="font-size:1.8rem">🎧</div>
     <h1 style="font-family:'Dancing Script';color:#ff4d8e">Last One</h1>
     <div style="background:#fff0f5;border:2px dashed #ffb6d9;border-radius:18px;padding:15px;margin:15px 0">
       <p style="font-size:.95rem">Ice cream date still loading... I haven't forgotten 🍦💖<br>After prelims — we celebrate properly, my 18-year-old queen 🎂👑</p>
     </div>
+
+    <!-- NEW GOODLUCK BUTTON - BIG -->
+    <div style="background:linear-gradient(135deg,#e8f0ff,#ffe4ee);border:2px solid #a2c9ff;border-radius:18px;padding:16px;margin:15px 0">
+      <p style="font-size:.85rem;font-weight:800;color:#5b8def;margin-bottom:10px">📚 NEW: FINALS SEASON</p>
+      <p style="font-size:.9rem;color:#6b2d4a;margin-bottom:12px">Chula, I made you a new one for your final exams... you got this! 🥺💖</p>
+      <a href="Goodluck.html" style="display:block;background:linear-gradient(135deg,#8fb6ff,#ff4d8e);color:white;text-decoration:none;padding:14px;border-radius:100px;font-weight:800;text-align:center;box-shadow:0 10px 20px rgba(255,77,142,.25)">Open Good Luck Letter 💌✨</a>
+    </div>
+
+    <p style="font-family:'Dancing Script';font-size:1.4rem;color:#ff8fbf">You made it to the end, Chula 🥺</p>
+    <a class="btn btn-pink" style="display:block;text-decoration:none;margin-top:15px;text-align:center" href="https://wa.me/?text=I've%20seen%20the%20letter%20and%20everything%20and%20my%20comment%20is%20...%20Thank%20you%20so%20much%20Thabiso%20🥺🎀">Text Me Your Reaction 💌</a>
+    <button class="btn" style="width:100%;margin-top:10px;border:2px solid #ffb6d9" onclick="blast()">Blow Candles Again 🎂✨</button>
+  </div>
+  </section>
     <p style="font-family:'Dancing Script';font-size:1.4rem;color:#ff8fbf">You made it to the end, Chula 🥺</p>
     <a class="btn btn-pink" style="display:block;text-decoration:none;margin-top:15px;text-align:center" href="https://wa.me/?text=I've%20seen%20the%20letter%20and%20everything%20and%20my%20comment%20is%20...%20Thank%20you%20so%20much%20Thabiso%20🥺🎀">Text Me Your Reaction 💌</a>
     <button class="btn" style="width:100%;margin-top:10px;border:2px solid #ffb6d9" onclick="blast()">Blow Candles Again 🎂✨</button>
